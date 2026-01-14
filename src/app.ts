@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import productsRoutes from "./modules/products/product.routes";
+import stockMovementRoutes from "./modules/stock/stockMovement.routes";
 import { errorHandler } from "./middleware/error.middleware";
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(morgan("dev"));
 
 //routes
 app.use("/api", productsRoutes);
+app.use("/api/stock-movements", stockMovementRoutes);
 
 app.use(errorHandler);
 

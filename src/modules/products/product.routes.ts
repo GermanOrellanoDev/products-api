@@ -42,6 +42,7 @@ router.post(
     body("name").isString().isLength({ min: 2 }),
     body("sku").optional().isString(),
     body("quantity").isInt({ min: 0 }).toInt(),
+    body("stock").isInt({ min: 0 }).toInt(),
     body("price").isFloat({ min: 0 }).toFloat(),
     body("category").optional().isString(),
     body("description").optional().isString(),
