@@ -33,7 +33,53 @@ router.get(
   validate,
   listProducts
 );
+
+/**
+ * @swagger
+ * /products/{id}:
+ *   get:
+ *     summary: Obtener producto por ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Producto encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ *       404:
+ *         description: Producto no encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
 router.get("/:id", [param("id").isMongoId()], validate, getProduct);
+
+/**
+ * @swagger
+ * /products:
+ *   post:
+ *     summary: Crear producto
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ProductInput'
+ *     responses:
+ *       201:
+ *         description: Producto creado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Product'
+ */
 router.post(
   "/",
   authenticate,

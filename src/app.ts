@@ -4,6 +4,8 @@ import morgan from "morgan";
 import productsRoutes from "./modules/products/product.routes";
 import stockMovementRoutes from "./modules/stock/stockMovement.routes";
 import { errorHandler } from "./middleware/error.middleware";
+import { swaggerSpec } from "./config/swagger";
+import swaggerUi from "swagger-ui-express";
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 //routes
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api", productsRoutes);
 app.use("/api/stock-movements", stockMovementRoutes);
 
